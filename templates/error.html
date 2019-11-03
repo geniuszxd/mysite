@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}错误{% endblock %}
+
+
+{% block blog-active %}active{% endblock %}
+
+{% block content %}
+    <div>{{ message }}<a href="{{ backward }}">返回</a></div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'blog/blog_list.html' %}
+
+{% block title %}
+    文章分类：{{ type }}
+{% endblock %}
+
+{% block blog_panel_title %}
+    日期归档：{{ blog_year_month }}（共有{{ page.paginator.count }}篇博客）  <a href="{% url 'blog_list' %}">查看全部博客</a>
+{% endblock %}

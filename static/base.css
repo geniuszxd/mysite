@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin-top: 70px!important;
+}
+/*a.logo {*/
+/*    text-decoration: none;*/
+/*    font-size: 120%;*/
+/*    padding: 5px 10px;*/
+/*}*/
+/*a {*/
+/*    display: inline-block;*/
+/*    color: #000;*/
+/*}*/
+/*div.nav {*/
+/*    background-color: azure;*/
+/*    border-bottom: 1px solid #03a9f4;*/
+/*    padding: 10px 5px;*/
+/*}*/
+ul.navbar-right {
+    margin-right: 0px;
+}

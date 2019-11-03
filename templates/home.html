@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}首页{% endblock %}
+
+{% block head_extends %}
+    <link href="{% static 'home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block home-active %}active{% endblock %}
+
+{% block content %}
+
+    <div id="content">
+        <p>欢迎来到庄晓东的个人博客网站，随便看。</p>
+    </div>
+
+    <div id="container"></div>
+    <div id="hot_blogs">
+        <h3>昨日热门</h3>
+        <ul>
+            {% for read_detail in yesterday_hot %}
+                <li><a href="{% url 'blog_detail' read_detail.content_object.pk %}">{{ read_detail.content_object.title }}</a>（{{ read_detail.read_num }}）</li>
+            {% empty %}
+                <li>没有热门博客</li>
+            {% endfor %}
+        </ul>
+    </div>
+        <div id="hot_blogs">
+        <h3>本周热门</h3>
+        <ul>
+            {% for blog in seven_days_hot %}
+                <li><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a>（{{ blog.read_num_sum }}）</li>
+            {% empty %}
+                <li>没有热门博客</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script>
+        var chart = Highcharts.chart('container', {
+            xAxis: {
+                categories: {{ seven_days_dates|safe }},
+                tickmarkPlacement: 'on',
+            },
+            yAxis: {
+                title: {text: null},
+                label: {enabled: false}
+            },
+            title: {
+                text: '前七日阅读量'
+            },
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    }
+                },
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            series: [{
+                name: '阅读量',
+                data: {{ seven_days_read_nums }}
+            }]
+        });
+    </script>
+
+
+
+{% endblock %}
