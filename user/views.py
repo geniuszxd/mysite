@@ -45,7 +45,7 @@ def login(request):
 def register(request):
     redirect_url = request.GET.get('from', reverse('home'))
     if request.method == 'POST':
-        register_form = RegisterForm(request.POST)
+        register_form = RegisterForm(request.POST, request=request)
         if register_form.is_valid():
             username = register_form.cleaned_data['username']
             email = register_form.cleaned_data['email']

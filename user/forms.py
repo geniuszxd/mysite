@@ -37,6 +37,11 @@ class RegisterForm(forms.Form):
     password_again = forms.CharField(label='密码确认',
                                      widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '请再次输入密码'}))
 
+    def __init__(self, *args, **kwargs):
+        if 'request' in kwargs:
+            self.request = kwargs.pop('request')
+        super().__init__(*args, **kwargs)
+
     def clean_username(self):
         username = self.cleaned_data['username']
         if User.objects.filter(username=username).exists():
